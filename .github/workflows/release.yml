@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-          persist-credentials: false
+          token: ${{ secrets.WORKFLOW_TOKEN }}
 
       - name: Cache requirements
         uses: actions/cache@v4
@@ -73,8 +73,8 @@ jobs:
 
       - name: Release new version
         id: release
-        env:
-          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+        # env:
+        #   GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
         run: |
           pdm release ${{ inputs.version }}
           echo "tag=$(git describe --abbrev=0 --tags)" >> "$GITHUB_OUTPUT"
