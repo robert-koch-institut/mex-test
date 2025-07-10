@@ -1,13 +1,6 @@
 # MEx test
 
-test server for the RKI metadata exchange.
-
-[![cookiecutter](https://github.com/robert-koch-institut/mex-test/actions/workflows/cookiecutter.yml/badge.svg)](https://github.com/robert-koch-institut/mex-template)
-[![cve-scan](https://github.com/robert-koch-institut/mex-test/actions/workflows/cve-scan.yml/badge.svg)](https://github.com/robert-koch-institut/mex-test/actions/workflows/cve-scan.yml)
-[![documentation](https://github.com/robert-koch-institut/mex-test/actions/workflows/documentation.yml/badge.svg)](https://robert-koch-institut.github.io/mex-test)
-[![linting](https://github.com/robert-koch-institut/mex-test/actions/workflows/linting.yml/badge.svg)](https://github.com/robert-koch-institut/mex-test/actions/workflows/linting.yml)
-[![open-code](https://github.com/robert-koch-institut/mex-test/actions/workflows/open-code.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-test)
-[![testing](https://github.com/robert-koch-institut/mex-test/actions/workflows/testing.yml/badge.svg)](https://github.com/robert-koch-institut/mex-test/actions/workflows/testing.yml)
+Test project
 
 ## Project
 
