@@ -1,8 +1,6 @@
 from collections.abc import Mapping
 from typing import Any, Final
 
-from mex.backend.graph.connector import GraphConnector
-from mex.backend.graph.exceptions import InconsistentGraphError, NoResultFoundError
 from mex.common.models import (
     ADDITIVE_MODEL_CLASSES_BY_NAME,
     PREVENTIVE_MODEL_CLASSES_BY_NAME,
@@ -14,6 +12,8 @@ from mex.common.models import (
 )
 from mex.common.transform import ensure_postfix, ensure_prefix
 from mex.common.types import Identifier
+from mex.test.graph.connector import GraphConnector
+from mex.test.graph.exceptions import InconsistentGraphError, NoResultFoundError
 
 MODEL_CLASS_LOOKUP_BY_FIELD_NAME: Final[dict[str, Mapping[str, type[AnyRuleModel]]]] = {
     "additive": ADDITIVE_MODEL_CLASSES_BY_NAME,

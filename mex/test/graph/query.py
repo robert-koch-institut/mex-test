@@ -11,7 +11,6 @@ from jinja2 import (
 )
 from pydantic import StringConstraints, validate_call
 
-from mex.backend.settings import BackendSettings
 from mex.common.connector import BaseConnector
 from mex.common.models import (
     EXTRACTED_MODEL_CLASSES_BY_NAME,
@@ -27,6 +26,7 @@ from mex.common.transform import (
     snake_to_dromedary,
 )
 from mex.common.types import NESTED_MODEL_CLASSES_BY_NAME
+from mex.test.settings import testSettings
 
 
 @validate_call
@@ -63,7 +63,7 @@ class QueryBuilder(BaseConnector):
 
     def __init__(self) -> None:
         """Create a new jinja environment with template loader, filters and globals."""
-        settings = BackendSettings.get()
+        settings = testSettings.get()
         self._env = Environment(
             loader=PackageLoader(__package__, package_path="cypher"),
             autoescape=select_autoescape(),

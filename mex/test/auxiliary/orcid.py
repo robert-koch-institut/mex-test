@@ -2,10 +2,10 @@ from typing import Annotated
 
 from fastapi import APIRouter, Query
 
-from mex.backend.auxiliary.primary_source import extracted_primary_source_orcid
 from mex.common.models import ExtractedPerson, PaginatedItemsContainer
 from mex.common.orcid.extract import search_records_by_name
 from mex.common.orcid.transform import transform_orcid_person_to_mex_person
+from mex.test.auxiliary.primary_source import extracted_primary_source_orcid
 
 router = APIRouter()
 

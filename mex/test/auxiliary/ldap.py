@@ -2,11 +2,11 @@ from typing import Annotated
 
 from fastapi import APIRouter, Query
 
-from mex.backend.auxiliary.organigram import extracted_organizational_units
-from mex.backend.auxiliary.primary_source import extracted_primary_source_ldap
 from mex.common.ldap.extract import get_ldap_persons
 from mex.common.ldap.transform import transform_ldap_persons_to_mex_persons
 from mex.common.models import ExtractedPerson, PaginatedItemsContainer
+from mex.test.auxiliary.organigram import extracted_organizational_units
+from mex.test.auxiliary.primary_source import extracted_primary_source_ldap
 
 router = APIRouter()
 

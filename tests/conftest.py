@@ -12,13 +12,6 @@ from pytest import MonkeyPatch
 from redis.client import Redis
 
 from mex.artificial.helpers import generate_artificial_extracted_items
-from mex.backend.cache.connector import CacheConnector, CacheProto, LocalCache
-from mex.backend.graph.connector import GraphConnector
-from mex.backend.identity.provider import GraphIdentityProvider
-from mex.backend.main import app
-from mex.backend.rules.helpers import create_and_get_rule_set
-from mex.backend.settings import BackendSettings
-from mex.backend.types import APIKeyDatabase, APIUserDatabase
 from mex.common.connector import CONNECTOR_STORE
 from mex.common.models import (
     MEX_PRIMARY_SOURCE_STABLE_TARGET_ID,
@@ -43,18 +36,23 @@ from mex.common.types import (
     Theme,
     YearMonthDay,
 )
+from mex.test.cache.connector import CacheConnector, CacheProto, LocalCache
+from mex.test.graph.connector import GraphConnector
+from mex.test.identity.provider import GraphIdentityProvider
+from mex.test.main import app
+from mex.test.rules.helpers import create_and_get_rule_set
+from mex.test.settings import testSettings
+from mex.test.types import APIKeyDatabase, APIUserDatabase
 
 pytest_plugins = ("mex.common.testing.plugin",)
 
 
 @pytest.fixture(autouse=True)
-def settings() -> BackendSettings:
+def settings() -> testSettings:
     """Load the settings for this pytest session."""
-    settings = BackendSettings.get()
-    settings.backend_api_key_database = APIKeyDatabase(
-        read="read_key", write="write_key"
-    )
-    settings.backend_user_database = APIUserDatabase(
+    settings = testSettings.get()
+    settings.test_api_key_database = APIKeyDatabase(read="read_key", write="write_key")
+    settings.test_user_database = APIUserDatabase(
         read={"Reader": "read_password"}, write={"Writer": "write_password"}
     )
     return settings
@@ -201,7 +199,7 @@ def set_identity_provider(
 ) -> None:
     """Ensure the identifier provider is set correctly for unit and int tests."""
     # TODO(ND): yuck, all this needs cleaning up after MX-1596
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     if is_integration_test:
         monkeypatch.setitem(settings.model_config, "validate_assignment", False)  # noqa: FBT003
         monkeypatch.setattr(settings, "identity_provider", IdentityProvider.GRAPH)
@@ -212,7 +210,7 @@ def set_identity_provider(
 @pytest.fixture(autouse=True)
 def isolate_graph_database(
     is_integration_test: bool,  # noqa: FBT001
-    settings: BackendSettings,
+    settings: testSettings,
     monkeypatch: MonkeyPatch,
 ) -> None:
     """Automatically flush the graph database for integration testing."""
@@ -227,7 +225,7 @@ def isolate_graph_database(
 @pytest.fixture(autouse=True)
 def isolate_redis_cache(
     is_integration_test: bool,  # noqa: FBT001
-    settings: BackendSettings,
+    settings: testSettings,
     monkeypatch: MonkeyPatch,
 ) -> None:
     """Automatically flush the redis cache for integration testing."""

@@ -3,10 +3,10 @@ from typing import Any
 import pytest
 from fastapi.testclient import TestClient
 
-from mex.backend.auxiliary.primary_source import extracted_primary_source_ldap
-from mex.backend.extracted.helpers import search_extracted_items_in_graph
 from mex.common.models import ExtractedPrimarySource
 from mex.common.types import TextLanguage
+from mex.test.auxiliary.primary_source import extracted_primary_source_ldap
+from mex.test.extracted.helpers import search_extracted_items_in_graph
 from tests.conftest import get_graph
 
 

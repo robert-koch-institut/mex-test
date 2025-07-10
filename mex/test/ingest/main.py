@@ -4,9 +4,9 @@ from fastapi import APIRouter, Body, Request
 from pydantic import Field
 from starlette import status
 
-from mex.backend.graph.connector import GraphConnector
 from mex.common.logging import logger
 from mex.common.models import AnyExtractedModel, AnyRuleSetResponse
+from mex.test.graph.connector import GraphConnector
 
 router = APIRouter()
 

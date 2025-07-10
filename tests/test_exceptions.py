@@ -6,9 +6,9 @@ import pytest
 from pydantic import BaseModel, ValidationError
 from starlette import status
 
-from mex.backend.exceptions import handle_detailed_error, handle_uncaught_exception
-from mex.backend.graph.exceptions import InconsistentGraphError
 from mex.common.exceptions import MExError
+from mex.test.exceptions import handle_detailed_error, handle_uncaught_exception
+from mex.test.graph.exceptions import InconsistentGraphError
 
 MOCK_REQUEST_SCOPE = {
     "http_version": "1.1",

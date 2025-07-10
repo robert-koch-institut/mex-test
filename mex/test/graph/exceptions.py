@@ -3,22 +3,22 @@ from typing import Any
 
 from pydantic_core import ErrorDetails
 
-from mex.backend.exceptions import BackendError
+from mex.test.exceptions import testError
 
 
-class NoResultFoundError(BackendError):
+class NoResultFoundError(testError):
     """A database result was required but none was found."""
 
 
-class MultipleResultsFoundError(BackendError):
+class MultipleResultsFoundError(testError):
     """A single database result was required but more than one were found."""
 
 
-class InconsistentGraphError(BackendError):
+class InconsistentGraphError(testError):
     """Exception raised for inconsistencies found in the graph database."""
 
 
-class IngestionError(BackendError):
+class IngestionError(testError):
     """Error for ingestion failures with underlying details."""
 
     def __init__(

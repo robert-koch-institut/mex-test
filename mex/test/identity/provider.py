@@ -1,7 +1,7 @@
-from mex.backend.cache.connector import CacheConnector
-from mex.backend.graph.connector import GraphConnector
 from mex.common.identity import BaseProvider, Identity
 from mex.common.types import Identifier, MergedPrimarySourceIdentifier
+from mex.test.cache.connector import CacheConnector
+from mex.test.graph.connector import GraphConnector
 
 
 class GraphIdentityProvider(BaseProvider):

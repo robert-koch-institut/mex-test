@@ -18,8 +18,8 @@ class DetailedError(Protocol):
         """Details about each underlying error."""
 
 
-class BackendError(MExError):
-    """Base backend error that offer details on underlying pydantic errors."""
+class testError(MExError):
+    """Base test error that offer details on underlying pydantic errors."""
 
     def errors(self) -> list[ErrorDetails]:
         """Details about underlying pydantic errors."""
@@ -81,7 +81,7 @@ def handle_detailed_error(request: Request, exc: Exception) -> Response:
         exc,
         status_code=(
             status.HTTP_429_TOO_MANY_REQUESTS
-            if isinstance(exc, BackendError) and exc.is_retryable()
+            if isinstance(exc, testError) and exc.is_retryable()
             else status.HTTP_400_BAD_REQUEST
         ),
         info=DebuggingInfo(

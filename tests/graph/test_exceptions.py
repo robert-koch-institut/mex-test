@@ -1,6 +1,6 @@
 from pydantic_core import ErrorDetails
 
-from mex.backend.graph.exceptions import IngestionError
+from mex.test.graph.exceptions import IngestionError
 
 
 def test_ingestion_error() -> None:

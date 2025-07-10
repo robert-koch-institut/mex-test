@@ -2,8 +2,8 @@ import pytest
 from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 
-from mex.backend.auxiliary import wikidata
 from mex.common.models import ExtractedPrimarySource
+from mex.test.auxiliary import wikidata
 
 
 @pytest.mark.usefixtures("mocked_wikidata")

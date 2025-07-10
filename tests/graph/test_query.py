@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from mex.backend.graph.query import QueryBuilder, render_constraints
+from mex.test.graph.query import QueryBuilder, render_constraints
 
 
 @pytest.fixture

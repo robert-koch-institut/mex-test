@@ -3,12 +3,12 @@ from typing import Annotated
 from fastapi import APIRouter, Query
 from requests import HTTPError
 
-from mex.backend.auxiliary.primary_source import extracted_primary_source_wikidata
 from mex.common.models import ExtractedOrganization, PaginatedItemsContainer
 from mex.common.wikidata.extract import get_wikidata_organization
 from mex.common.wikidata.transform import (
     transform_wikidata_organizations_to_extracted_organizations,
 )
+from mex.test.auxiliary.primary_source import extracted_primary_source_wikidata
 
 router = APIRouter()
 

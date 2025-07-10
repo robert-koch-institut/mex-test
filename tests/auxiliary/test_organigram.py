@@ -1,7 +1,7 @@
-from mex.backend.auxiliary.organigram import extracted_organizational_units
-from mex.backend.extracted.helpers import search_extracted_items_in_graph
 from mex.common.models import ExtractedOrganizationalUnit
 from mex.common.types import Text, TextLanguage
+from mex.test.auxiliary.organigram import extracted_organizational_units
+from mex.test.extracted.helpers import search_extracted_items_in_graph
 from tests.conftest import get_graph
 
 

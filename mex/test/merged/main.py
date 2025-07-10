@@ -5,14 +5,14 @@ from fastapi import APIRouter, Query
 from fastapi.exceptions import HTTPException
 from starlette import status
 
-from mex.backend.graph.exceptions import NoResultFoundError
-from mex.backend.merged.helpers import (
+from mex.common.models import AnyMergedModel, PaginatedItemsContainer
+from mex.common.types import Identifier
+from mex.test.graph.exceptions import NoResultFoundError
+from mex.test.merged.helpers import (
     get_merged_item_from_graph,
     search_merged_items_in_graph,
 )
-from mex.backend.types import MergedType, ReferenceFieldName, Validation
-from mex.common.models import AnyMergedModel, PaginatedItemsContainer
-from mex.common.types import Identifier
+from mex.test.types import MergedType, ReferenceFieldName, Validation
 
 router = APIRouter()
 

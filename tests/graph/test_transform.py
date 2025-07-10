@@ -1,4 +1,4 @@
-from mex.backend.graph.transform import (
+from mex.test.graph.transform import (
     expand_references_in_search_result,
     transform_edges_into_expectations_by_edge_locator,
 )

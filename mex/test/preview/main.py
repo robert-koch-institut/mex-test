@@ -4,9 +4,6 @@ from typing import Annotated
 from fastapi import APIRouter, Body, HTTPException, Path, Query
 from starlette import status
 
-from mex.backend.extracted.helpers import get_extracted_items_from_graph
-from mex.backend.merged.helpers import search_merged_items_in_graph
-from mex.backend.types import MergedType, ReferenceFieldName, Validation
 from mex.common.merged.main import create_merged_item
 from mex.common.models import (
     AnyMergedModel,
@@ -16,6 +13,9 @@ from mex.common.models import (
 )
 from mex.common.transform import ensure_prefix
 from mex.common.types import Identifier
+from mex.test.extracted.helpers import get_extracted_items_from_graph
+from mex.test.merged.helpers import search_merged_items_in_graph
+from mex.test.types import MergedType, ReferenceFieldName, Validation
 
 router = APIRouter()
 

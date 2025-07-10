@@ -1,30 +1,30 @@
 from pydantic import Field, SecretStr
 
-from mex.backend.types import APIKeyDatabase, APIUserDatabase
 from mex.common.settings import BaseSettings
+from mex.test.types import APIKeyDatabase, APIUserDatabase
 
 
-class BackendSettings(BaseSettings):
-    """Settings definition for the backend server."""
+class testSettings(BaseSettings):
+    """Settings definition for the test server."""
 
-    backend_host: str = Field(
+    test_host: str = Field(
         "localhost",
         min_length=1,
         max_length=250,
-        description="Host that the backend server will run on.",
-        validation_alias="MEX_BACKEND_HOST",
+        description="Host that the test server will run on.",
+        validation_alias="MEX_test_HOST",
     )
-    backend_port: int = Field(
+    test_port: int = Field(
         8080,
         gt=0,
         lt=65536,
-        description="Port that the backend server should listen on.",
-        validation_alias="MEX_BACKEND_PORT",
+        description="Port that the test server should listen on.",
+        validation_alias="MEX_test_PORT",
     )
-    backend_root_path: str = Field(
+    test_root_path: str = Field(
         "",
-        description="Root path that the backend server should run under.",
-        validation_alias="MEX_BACKEND_ROOT_PATH",
+        description="Root path that the test server should run under.",
+        validation_alias="MEX_test_ROOT_PATH",
     )
     graph_url: str = Field(
         "neo4j://localhost:7687",
@@ -62,18 +62,18 @@ class BackendSettings(BaseSettings):
         ),
         validation_alias="MEX_GRAPH_SESSION_TIMEOUT",
     )
-    backend_api_key_database: APIKeyDatabase = Field(
+    test_api_key_database: APIKeyDatabase = Field(
         APIKeyDatabase(),
         description="Database of API keys.",
-        validation_alias="MEX_BACKEND_API_KEY_DATABASE",
+        validation_alias="MEX_test_API_KEY_DATABASE",
     )
-    backend_user_database: APIUserDatabase = Field(
+    test_user_database: APIUserDatabase = Field(
         APIUserDatabase(),
         description="Database of users.",
-        validation_alias="MEX_BACKEND_API_USER_DATABASE",
+        validation_alias="MEX_test_API_USER_DATABASE",
     )
     redis_url: SecretStr | None = Field(
         None,
         description="Fully qualified URL of a redis cache server.",
-        validation_alias="MEX_BACKEND_REDIS_URL",
+        validation_alias="MEX_test_REDIS_URL",
     )

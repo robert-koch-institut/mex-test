@@ -5,9 +5,9 @@ from neo4j import Record as Neo4jRecord
 from neo4j import Result as Neo4jResult
 from neo4j import ResultSummary as Neo4jResultSummary
 
-from mex.backend.graph.exceptions import MultipleResultsFoundError, NoResultFoundError
-from mex.backend.graph.models import Result
 from mex.common.testing import Joker
+from mex.test.graph.exceptions import MultipleResultsFoundError, NoResultFoundError
+from mex.test.graph.models import Result
 
 
 @pytest.fixture

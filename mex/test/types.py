@@ -2,15 +2,15 @@ from enum import Enum, EnumMeta, _EnumDict
 
 from pydantic import SecretStr
 
-from mex.backend.fields import (
-    ALL_REFERENCE_FIELD_NAMES,
-)
 from mex.common.models import (
     EXTRACTED_MODEL_CLASSES_BY_NAME,
     MERGED_MODEL_CLASSES_BY_NAME,
     BaseModel,
 )
 from mex.common.transform import dromedary_to_snake
+from mex.test.fields import (
+    ALL_REFERENCE_FIELD_NAMES,
+)
 
 
 class AccessLevel(Enum):
@@ -40,7 +40,7 @@ class APIKeyDatabase(BaseModel):
 
 
 class APIUserDatabase(BaseModel):
-    """Database containing usernames and passwords for backend API."""
+    """Database containing usernames and passwords for test API."""
 
     read: dict[str, APIUserPassword] = {}
     write: dict[str, APIUserPassword] = {}

@@ -3,13 +3,13 @@ from typing import Annotated
 from fastapi import APIRouter, Body, HTTPException, Path
 from starlette import status
 
-from mex.backend.rules.helpers import (
+from mex.common.models import AnyRuleSetRequest, AnyRuleSetResponse
+from mex.common.types import Identifier
+from mex.test.rules.helpers import (
     create_and_get_rule_set,
     get_rule_set_from_graph,
     update_and_get_rule_set,
 )
-from mex.common.models import AnyRuleSetRequest, AnyRuleSetResponse
-from mex.common.types import Identifier
 
 router = APIRouter()
 

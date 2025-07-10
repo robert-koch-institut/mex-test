@@ -2,8 +2,6 @@ from typing import Any
 
 import pytest
 
-from mex.backend.graph.exceptions import MultipleResultsFoundError
-from mex.backend.identity.provider import GraphIdentityProvider
 from mex.common.models import (
     MEX_PRIMARY_SOURCE_IDENTIFIER,
     MEX_PRIMARY_SOURCE_IDENTIFIER_IN_PRIMARY_SOURCE,
@@ -14,6 +12,8 @@ from mex.common.types import (
     MergedOrganizationalUnitIdentifier,
     MergedPrimarySourceIdentifier,
 )
+from mex.test.graph.exceptions import MultipleResultsFoundError
+from mex.test.identity.provider import GraphIdentityProvider
 from tests.conftest import MockedGraph
 
 

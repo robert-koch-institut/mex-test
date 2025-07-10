@@ -5,12 +5,12 @@ from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 from starlette import status
 
-from mex.backend.graph.connector import GraphConnector
 from mex.common.models import (
     MEX_PRIMARY_SOURCE_STABLE_TARGET_ID,
     AnyExtractedModel,
     ExtractedContactPoint,
 )
+from mex.test.graph.connector import GraphConnector
 from tests.conftest import get_graph
 
 
@@ -353,7 +353,7 @@ def test_ingest_malformed(
 def test_ingest_constraint_violation(
     client_with_api_key_write_permission: TestClient,
 ) -> None:
-    # given a simple item saved successfully to the backend
+    # given a simple item saved successfully to the test
     contact_point = ExtractedContactPoint(
         email="101@test.tld",
         identifierInPrimarySource="test-101",
@@ -387,7 +387,7 @@ def test_ingest_constraint_violation(
         "/v0/ingest", json={"items": [raw_item]}
     )
 
-    # then we expect the backend to reject the request
+    # then we expect the test to reject the request
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY, response.text
     assert "Cannot set computed fields to custom values!" in response.text
 

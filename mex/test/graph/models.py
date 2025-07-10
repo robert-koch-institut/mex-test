@@ -9,9 +9,9 @@ from neo4j.graph import Relationship
 from pydantic import BaseModel, field_validator
 from typing_extensions import TypedDict
 
-from mex.backend.graph.exceptions import MultipleResultsFoundError, NoResultFoundError
-from mex.backend.logging import LOGGING_LINE_LENGTH
 from mex.common.logging import logger
+from mex.test.graph.exceptions import MultipleResultsFoundError, NoResultFoundError
+from mex.test.logging import LOGGING_LINE_LENGTH
 
 GraphValueType = None | str | int | list[str] | list[int]
 
@@ -36,11 +36,11 @@ class Result:
 
     This class wraps `neo4j.Result` in an interface akin to `sqlalchemy.engine.Result`.
     We do this, to reduce vendor tie-in with neo4j and limit the dependency-scope of
-    the neo4j driver library to the `mex.backend.graph` submodule.
+    the neo4j driver library to the `mex.test.graph` submodule.
     """
 
     def __init__(self, result: Neo4jResult) -> None:
-        """Wrap a neo4j result object in a mex-backend result."""
+        """Wrap a neo4j result object in a mex-test result."""
         self._records, self._summary, _ = result.to_eager_result()
         transformer = cast("Callable[[Any], dict[str, Any]]", EdgeExporter().transform)
         self._get_cached_data = cache(

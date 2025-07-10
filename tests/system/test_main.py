@@ -3,8 +3,8 @@ from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 from starlette import status
 
-from mex.backend.settings import BackendSettings
 from mex.common.testing import Joker
+from mex.test.settings import testSettings
 
 
 def test_health_check(client: TestClient) -> None:
@@ -44,7 +44,7 @@ def test_flush_graph_database(
     client_with_api_key_write_permission: TestClient,
     monkeypatch: MonkeyPatch,
 ) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "debug", True)
     response = client_with_api_key_write_permission.delete("/v0/_system/graph")
     assert response.status_code == status.HTTP_200_OK, response.text

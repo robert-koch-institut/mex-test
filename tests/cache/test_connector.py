@@ -9,9 +9,9 @@ from redis import Redis
 from redis.exceptions import ConnectionError as RedisConnectionError
 from redis.exceptions import RedisError
 
-from mex.backend.cache.connector import CacheConnector, LocalCache
-from mex.backend.settings import BackendSettings
 from mex.common.transform import MExEncoder
+from mex.test.cache.connector import CacheConnector, LocalCache
+from mex.test.settings import testSettings
 
 
 class DummyModel(BaseModel):
@@ -85,7 +85,7 @@ def test_local_cache_close(local_cache: LocalCache) -> None:
 def test_cache_connector_with_redis_url(
     monkeypatch: MonkeyPatch, mocked_redis: Mock
 ) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", "redis://localhost:6379")
     monkeypatch.setattr(Redis, "from_url", lambda url: mocked_redis)
 
@@ -94,7 +94,7 @@ def test_cache_connector_with_redis_url(
 
 
 def test_cache_connector_without_redis_url(monkeypatch: MonkeyPatch) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", None)
 
     connector = CacheConnector()
@@ -195,7 +195,7 @@ def test_metrics_with_local_cache(monkeypatch: MonkeyPatch) -> None:
 
 
 def test_flush_in_debug_mode(monkeypatch: MonkeyPatch) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "debug", True)
 
     mock_cache = Mock()
@@ -207,7 +207,7 @@ def test_flush_in_debug_mode(monkeypatch: MonkeyPatch) -> None:
 
 
 def test_flush_not_in_debug_mode(monkeypatch: MonkeyPatch) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "debug", False)
 
     mock_cache = Mock()
@@ -228,7 +228,7 @@ def test_close(monkeypatch: MonkeyPatch) -> None:
 
 
 def test_redis_connection_error_fallback(monkeypatch: MonkeyPatch) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", "redis://localhost:6379")
 
     def mock_from_url(_url: str) -> Mock:
@@ -252,7 +252,7 @@ def test_redis_operation_errors(
     mock_redis.set.side_effect = RedisError("Redis operation failed")
 
     monkeypatch.setattr(Redis, "from_url", lambda url: mock_redis)
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", "redis://localhost:6379")
 
     connector = CacheConnector()
@@ -267,7 +267,7 @@ def test_redis_operation_errors(
 def test_roundtrip_with_local_cache(
     monkeypatch: MonkeyPatch, sample_model: DummyModel
 ) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", None)
 
     connector = CacheConnector()
@@ -292,7 +292,7 @@ def test_complex_model_serialization(monkeypatch: MonkeyPatch) -> None:
         metadata={"version": "1.0", "author": "test"},
     )
 
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", None)
 
     connector = CacheConnector()
@@ -303,7 +303,7 @@ def test_complex_model_serialization(monkeypatch: MonkeyPatch) -> None:
 
 
 def test_cache_isolation_after_flush(monkeypatch: MonkeyPatch) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", None)
     monkeypatch.setattr(settings, "debug", True)
 
@@ -319,7 +319,7 @@ def test_cache_isolation_after_flush(monkeypatch: MonkeyPatch) -> None:
 
 
 def test_metrics_consistency(monkeypatch: MonkeyPatch) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "redis_url", None)
 
     connector = CacheConnector()

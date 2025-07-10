@@ -5,13 +5,6 @@ from typing import Any, TypedDict, cast
 from neo4j.exceptions import Neo4jError
 from pydantic_core import ErrorDetails
 
-from mex.backend.fields import (
-    NESTED_ENTITY_TYPES_BY_CLASS_NAME,
-    REFERENCED_ENTITY_TYPES_BY_CLASS_NAME,
-    REFERENCED_ENTITY_TYPES_BY_FIELD_BY_CLASS_NAME,
-)
-from mex.backend.graph.models import GraphRel, IngestData, IngestParams
-from mex.backend.graph.query import QueryBuilder
 from mex.common.fields import (
     FINAL_FIELDS_BY_CLASS_NAME,
     LINK_FIELDS_BY_CLASS_NAME,
@@ -22,6 +15,13 @@ from mex.common.fields import (
 from mex.common.models import EXTRACTED_MODEL_CLASSES_BY_NAME, AnyExtractedModel
 from mex.common.transform import ensure_prefix, to_key_and_values
 from mex.common.types import AnyPrimitiveType, Link, Text
+from mex.test.fields import (
+    NESTED_ENTITY_TYPES_BY_CLASS_NAME,
+    REFERENCED_ENTITY_TYPES_BY_CLASS_NAME,
+    REFERENCED_ENTITY_TYPES_BY_FIELD_BY_CLASS_NAME,
+)
+from mex.test.graph.models import GraphRel, IngestData, IngestParams
+from mex.test.graph.query import QueryBuilder
 
 
 class _SearchResultReference(TypedDict):

@@ -13,23 +13,6 @@ from neo4j import (
 from neo4j.exceptions import Neo4jError
 from pydantic import Field
 
-from mex.backend.fields import (
-    ALL_REFERENCE_FIELD_NAMES,
-    SEARCHABLE_CLASSES,
-    SEARCHABLE_FIELDS,
-)
-from mex.backend.graph.exceptions import InconsistentGraphError, IngestionError
-from mex.backend.graph.models import IngestData, Result
-from mex.backend.graph.query import Query, QueryBuilder
-from mex.backend.graph.transform import (
-    expand_references_in_search_result,
-    get_error_details_from_neo4j_error,
-    get_ingest_query_for_entity_type,
-    transform_edges_into_expectations_by_edge_locator,
-    transform_model_into_ingest_data,
-    validate_ingested_data,
-)
-from mex.backend.settings import BackendSettings
 from mex.common.connector import BaseConnector
 from mex.common.exceptions import MExError
 from mex.common.fields import (
@@ -63,6 +46,23 @@ from mex.common.types import (
     MergedPrimarySourceIdentifier,
     Text,
 )
+from mex.test.fields import (
+    ALL_REFERENCE_FIELD_NAMES,
+    SEARCHABLE_CLASSES,
+    SEARCHABLE_FIELDS,
+)
+from mex.test.graph.exceptions import InconsistentGraphError, IngestionError
+from mex.test.graph.models import IngestData, Result
+from mex.test.graph.query import Query, QueryBuilder
+from mex.test.graph.transform import (
+    expand_references_in_search_result,
+    get_error_details_from_neo4j_error,
+    get_ingest_query_for_entity_type,
+    transform_edges_into_expectations_by_edge_locator,
+    transform_model_into_ingest_data,
+    validate_ingested_data,
+)
+from mex.test.settings import testSettings
 
 
 class MExPrimarySource(BasePrimarySource):
@@ -95,7 +95,7 @@ class GraphConnector(BaseConnector):
 
     def _init_driver(self) -> Driver:
         """Initialize and return a database driver."""
-        settings = BackendSettings.get()
+        settings = testSettings.get()
         return GraphDatabase.driver(
             settings.graph_url,
             auth=(
@@ -108,7 +108,7 @@ class GraphConnector(BaseConnector):
                 NotificationDisabledCategory.UNRECOGNIZED,
             ],
             telemetry_disabled=True,
-            max_connection_pool_size=settings.backend_api_parallelization,
+            max_connection_pool_size=settings.test_api_parallelization,
             max_transaction_retry_time=settings.graph_session_timeout,
         )
 
@@ -623,7 +623,7 @@ class GraphConnector(BaseConnector):
         models: Sequence[AnyExtractedModel | AnyRuleSetResponse],
     ) -> Generator[None, None, None]:
         """Ingest a list of models into the graph as nodes and connect all edges."""
-        settings = BackendSettings.get()
+        settings = testSettings.get()
         with self.driver.session(default_access_mode=WRITE_ACCESS) as session:
             for model in models:
                 if isinstance(model, AnyRuleSetResponse):
@@ -687,7 +687,7 @@ class GraphConnector(BaseConnector):
         Completely wipes the Neo4j database including all data, constraints,
         and indexes. Used for testing and development cleanup.
         """
-        settings = BackendSettings.get()
+        settings = testSettings.get()
         if settings.debug is True:
             with self.driver.session(default_access_mode=WRITE_ACCESS) as session:
                 session.run("MATCH (n) DETACH DELETE n;")

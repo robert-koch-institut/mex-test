@@ -5,8 +5,8 @@ from fastapi import Depends, Header, HTTPException
 from fastapi.security import APIKeyHeader, HTTPBasic, HTTPBasicCredentials
 from starlette import status
 
-from mex.backend.settings import BackendSettings
-from mex.backend.types import APIKey
+from mex.test.settings import testSettings
+from mex.test.types import APIKey
 
 X_API_KEY = APIKeyHeader(name="X-API-Key", auto_error=False)
 X_API_CREDENTIALS = HTTPBasic(auto_error=False)
@@ -69,17 +69,17 @@ def has_write_access(
         user_agent: user-agent (in case of a web browser starts with "Mozilla/")
 
     Settings:
-        check credentials in backend_user_database or backend_api_key_database
+        check credentials in test_user_database or test_api_key_database
     """
     _check_header_for_authorization_method(api_key, credentials, user_agent)
 
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     can_write = False
     if api_key:
-        api_key_database = settings.backend_api_key_database
+        api_key_database = settings.test_api_key_database
         can_write = APIKey(api_key) in api_key_database.write
     elif credentials:
-        api_write_user_db = settings.backend_user_database.write
+        api_write_user_db = settings.test_user_database.write
         user, pw = credentials.username, credentials.password.encode("utf-8")
         if api_write_user := api_write_user_db.get(user):
             can_write = compare_digest(
@@ -116,7 +116,7 @@ def has_read_access(
         user_agent: user-agent (in case of a web browser starts with "Mozilla/")
 
     Settings:
-        check credentials in backend_user_database or backend_api_key_database
+        check credentials in test_user_database or test_api_key_database
     """
     _check_header_for_authorization_method(api_key, credentials, user_agent)
 
@@ -126,13 +126,13 @@ def has_read_access(
     except HTTPException:
         can_write = False
 
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     can_read = False
     if api_key:
-        api_key_database = settings.backend_api_key_database
+        api_key_database = settings.test_api_key_database
         can_read = APIKey(api_key) in api_key_database.read
     elif credentials:
-        api_read_user_db = settings.backend_user_database.read
+        api_read_user_db = settings.test_user_database.read
         user, pw = credentials.username, credentials.password.encode("utf-8")
         if api_read_user := api_read_user_db.get(user):
             can_read = compare_digest(

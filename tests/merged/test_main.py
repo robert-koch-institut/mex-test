@@ -4,7 +4,6 @@ import pytest
 from fastapi.testclient import TestClient
 from starlette import status
 
-from mex.backend.rules.helpers import update_and_get_rule_set
 from mex.common.merged.main import create_merged_item
 from mex.common.models import (
     AnyExtractedModel,
@@ -12,6 +11,7 @@ from mex.common.models import (
     OrganizationalUnitRuleSetRequest,
     SubtractiveOrganizationalUnit,
 )
+from mex.test.rules.helpers import update_and_get_rule_set
 from tests.conftest import MockedGraph
 
 

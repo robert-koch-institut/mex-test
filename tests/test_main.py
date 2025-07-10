@@ -3,8 +3,8 @@ from fastapi.testclient import TestClient
 from neo4j import GraphDatabase
 from starlette import status
 
-from mex.backend.main import app
-from mex.backend.settings import BackendSettings
+from mex.test.main import app
+from mex.test.settings import testSettings
 
 
 def test_all_endpoints_require_authorization(client: TestClient) -> None:
@@ -27,7 +27,7 @@ def test_all_endpoints_require_authorization(client: TestClient) -> None:
 
 
 @pytest.mark.integration
-def test_database_is_empty(settings: BackendSettings) -> None:
+def test_database_is_empty(settings: testSettings) -> None:
     with GraphDatabase.driver(
         settings.graph_url,
         auth=(

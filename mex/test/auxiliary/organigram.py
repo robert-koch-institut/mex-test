@@ -1,15 +1,15 @@
 from typing import cast
 
-from mex.backend.auxiliary.primary_source import (
-    extracted_primary_source_organigram,
-)
-from mex.backend.extracted.helpers import search_extracted_items_in_graph
-from mex.backend.graph.connector import GraphConnector
 from mex.common.models import ExtractedOrganizationalUnit
 from mex.common.organigram.extract import extract_organigram_units
 from mex.common.organigram.transform import (
     transform_organigram_units_to_organizational_units,
 )
+from mex.test.auxiliary.primary_source import (
+    extracted_primary_source_organigram,
+)
+from mex.test.extracted.helpers import search_extracted_items_in_graph
+from mex.test.graph.connector import GraphConnector
 
 
 def extracted_organizational_units() -> list[ExtractedOrganizationalUnit]:

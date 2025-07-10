@@ -4,9 +4,9 @@ from typing import Any, Protocol, cast
 from pydantic import BaseModel
 from redis import Redis
 
-from mex.backend.settings import BackendSettings
 from mex.common.connector import BaseConnector
 from mex.common.transform import MExEncoder
+from mex.test.settings import testSettings
 
 
 class CacheProto(Protocol):
@@ -51,7 +51,7 @@ class CacheConnector(BaseConnector):
 
     def __init__(self) -> None:
         """Create a new cache connector instance."""
-        settings = BackendSettings.get()
+        settings = testSettings.get()
         if settings.redis_url:
             self._cache: CacheProto = Redis.from_url(
                 settings.redis_url.get_secret_value()
@@ -90,7 +90,7 @@ class CacheConnector(BaseConnector):
 
         This operation only executes when debug mode is enabled in settings.
         """
-        settings = BackendSettings.get()
+        settings = testSettings.get()
         if settings.debug is True:
             self._cache.flushdb()
 

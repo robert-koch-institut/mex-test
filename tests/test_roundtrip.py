@@ -1,8 +1,8 @@
 import pytest
 
-from mex.backend.extracted.helpers import search_extracted_items_in_graph
-from mex.backend.graph.connector import MEX_EXTRACTED_PRIMARY_SOURCE
 from mex.common.models import AnyExtractedModel, PaginatedItemsContainer
+from mex.test.extracted.helpers import search_extracted_items_in_graph
+from mex.test.graph.connector import MEX_EXTRACTED_PRIMARY_SOURCE
 
 
 @pytest.mark.integration

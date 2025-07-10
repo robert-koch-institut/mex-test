@@ -6,11 +6,6 @@ import pytest
 from black.const import DEFAULT_LINE_LENGTH
 from pytest import MonkeyPatch
 
-from mex.backend.graph import connector as connector_module
-from mex.backend.graph.connector import GraphConnector
-from mex.backend.graph.exceptions import InconsistentGraphError
-from mex.backend.graph.query import Query
-from mex.backend.settings import BackendSettings
 from mex.common.exceptions import MExError
 from mex.common.models import (
     EXTRACTED_MODEL_CLASSES_BY_NAME,
@@ -24,6 +19,11 @@ from mex.common.models import (
     OrganizationalUnitRuleSetResponse,
 )
 from mex.common.types import Identifier, Text, TextLanguage
+from mex.test.graph import connector as connector_module
+from mex.test.graph.connector import GraphConnector
+from mex.test.graph.exceptions import InconsistentGraphError
+from mex.test.graph.query import Query
+from mex.test.settings import testSettings
 from tests.conftest import MockedGraph, get_graph
 
 
@@ -1689,7 +1689,7 @@ def test_mocked_graph_ingests_extracted_models(
 
 @pytest.mark.integration
 def test_connector_flush_fails(monkeypatch: MonkeyPatch) -> None:
-    settings = BackendSettings.get()
+    settings = testSettings.get()
 
     monkeypatch.setattr(settings, "debug", False)
     graph = GraphConnector.get()
@@ -1705,7 +1705,7 @@ def test_connector_flush_fails(monkeypatch: MonkeyPatch) -> None:
 def test_connector_flush(monkeypatch: MonkeyPatch) -> None:
     assert len(get_graph()) >= 10
 
-    settings = BackendSettings.get()
+    settings = testSettings.get()
     monkeypatch.setattr(settings, "debug", True)
     graph = GraphConnector.get()
     graph.flush()

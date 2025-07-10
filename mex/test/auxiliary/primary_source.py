@@ -1,8 +1,5 @@
 from typing import cast
 
-from mex.backend.extracted.helpers import search_extracted_items_in_graph
-from mex.backend.graph.connector import GraphConnector
-from mex.backend.graph.exceptions import NoResultFoundError
 from mex.common.identity import get_provider
 from mex.common.logging import logger
 from mex.common.models import (
@@ -10,6 +7,9 @@ from mex.common.models import (
     ExtractedPrimarySource,
 )
 from mex.common.primary_source.helpers import get_extracted_primary_source_by_name
+from mex.test.extracted.helpers import search_extracted_items_in_graph
+from mex.test.graph.connector import GraphConnector
+from mex.test.graph.exceptions import NoResultFoundError
 
 
 def _fetch_or_insert_primary_source(name: str) -> ExtractedPrimarySource:

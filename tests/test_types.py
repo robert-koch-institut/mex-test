@@ -1,7 +1,7 @@
 import secrets
 from enum import Enum
 
-from mex.backend.types import (
+from mex.test.types import (
     APIKey,
     APIKeyDatabase,
     APIUserDatabase,

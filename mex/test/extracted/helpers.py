@@ -2,10 +2,10 @@ from collections.abc import Sequence
 
 from pydantic_core import ValidationError
 
-from mex.backend.graph.connector import GraphConnector
-from mex.backend.graph.exceptions import InconsistentGraphError, NoResultFoundError
 from mex.common.models import AnyExtractedModel, PaginatedItemsContainer
 from mex.common.types import Identifier
+from mex.test.graph.connector import GraphConnector
+from mex.test.graph.exceptions import InconsistentGraphError, NoResultFoundError
 
 
 def search_extracted_items_in_graph(  # noqa: PLR0913
