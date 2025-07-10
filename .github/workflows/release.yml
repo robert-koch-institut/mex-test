@@ -121,10 +121,10 @@ jobs:
       - name: Build, tag and push docker image
         run: |
           docker build . \
-          --tag ghcr.io/robert-koch-institut/mex-backend:latest \
-          --tag ghcr.io/robert-koch-institut/mex-backend:${{ github.sha }} \
-          --tag ghcr.io/robert-koch-institut/mex-backend:${{ needs.release.outputs.tag }}
-          docker push --all-tags ghcr.io/robert-koch-institut/mex-backend
+          --tag ghcr.io/robert-koch-institut/mex-test:latest \
+          --tag ghcr.io/robert-koch-institut/mex-test:${{ github.sha }} \
+          --tag ghcr.io/robert-koch-institut/mex-test:${{ needs.release.outputs.tag }}
+          docker push --all-tags ghcr.io/robert-koch-institut/mex-test
 
   distribute:
     runs-on: ubuntu-latest

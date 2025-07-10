@@ -186,7 +186,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- ldap search ingests PrimarySource into backend
+- ldap search ingests PrimarySource into test
 
 ## [0.31.4] - 2025-03-18
 
@@ -220,7 +220,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- wikidata search ingests PrimarySource into backend
+- wikidata search ingests PrimarySource into test
 
 ### Changes
 
@@ -256,8 +256,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- remove backend settings that were just duplicating common settings
-- removed BackendIdentityProvider enum, because it is now included in common
+- remove test settings that were just duplicating common settings
+- removed testIdentityProvider enum, because it is now included in common
 - remove GraphConnector.create_rule_set, in favor of combined ingest method
 - remove unused ingest_extracted_items_into_graph helper
 - remove unused BulkIngestRequest and BulkIngestResponse
@@ -331,11 +331,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - harmonize error handling for transforming raw rule-sets to responses
 - return 404 on GET rule-set endpoint, when no rules are found
 - create new endpoint for fetching previews of merged items
-- replaced `mex.backend.fields` with `mex.common` counterpart
+- replaced `mex.test.fields` with `mex.common` counterpart
 
 ### Removed
 
-- removed not needed `mex.backend.constants` module
+- removed not needed `mex.test.constants` module
 - removed over-engineered `reraising` function
 
 ## [0.24.0] - 2024-11-25
@@ -383,7 +383,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- remove already obsolete module `mex.backend.serialization`
+- remove already obsolete module `mex.test.serialization`
   this is not needed any more with the new mex-common version
 
 ### Fixed
@@ -410,7 +410,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
-- BREAKING: move `to_primitive` to a more fittingly named `mex.backend.serialization`
+- BREAKING: move `to_primitive` to a more fittingly named `mex.test.serialization`
 - BREAKING: swap `INDEXABLE_MODEL_CLASSES_BY_NAME` for `ALL_MODEL_CLASSES_BY_NAME`
   to also include non-indexable models (namely: merged models)
 - BREAKING: rename `fetch_extracted_data` to a more consistent `fetch_extracted_items`

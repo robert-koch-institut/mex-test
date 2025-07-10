@@ -3,9 +3,9 @@
 FROM python:3.11 AS base
 
 LABEL org.opencontainers.image.authors="mex@rki.de"
-LABEL org.opencontainers.image.description="Backend server for the RKI metadata exchange."
+LABEL org.opencontainers.image.description="test server for the RKI metadata exchange."
 LABEL org.opencontainers.image.licenses="MIT"
-LABEL org.opencontainers.image.url="https://github.com/robert-koch-institut/mex-backend"
+LABEL org.opencontainers.image.url="https://github.com/robert-koch-institut/mex-test"
 LABEL org.opencontainers.image.vendor="robert-koch-institut"
 
 ENV PYTHONUNBUFFERED=1
@@ -16,7 +16,7 @@ ENV PIP_NO_INPUT=on
 ENV PIP_PREFER_BINARY=on
 ENV PIP_PROGRESS_BAR=off
 
-ENV MEX_BACKEND_HOST=0.0.0.0
+ENV MEX_test_HOST=0.0.0.0
 
 WORKDIR /app
 
@@ -36,4 +36,4 @@ USER mex
 
 EXPOSE 8080
 
-ENTRYPOINT [ "backend" ]
+ENTRYPOINT [ "test" ]

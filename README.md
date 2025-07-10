@@ -1,13 +1,13 @@
-# MEx backend
+# MEx test
 
-Backend server for the RKI metadata exchange.
+test server for the RKI metadata exchange.
 
-[![cookiecutter](https://github.com/robert-koch-institut/mex-backend/actions/workflows/cookiecutter.yml/badge.svg)](https://github.com/robert-koch-institut/mex-template)
-[![cve-scan](https://github.com/robert-koch-institut/mex-backend/actions/workflows/cve-scan.yml/badge.svg)](https://github.com/robert-koch-institut/mex-backend/actions/workflows/cve-scan.yml)
-[![documentation](https://github.com/robert-koch-institut/mex-backend/actions/workflows/documentation.yml/badge.svg)](https://robert-koch-institut.github.io/mex-backend)
-[![linting](https://github.com/robert-koch-institut/mex-backend/actions/workflows/linting.yml/badge.svg)](https://github.com/robert-koch-institut/mex-backend/actions/workflows/linting.yml)
-[![open-code](https://github.com/robert-koch-institut/mex-backend/actions/workflows/open-code.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-backend)
-[![testing](https://github.com/robert-koch-institut/mex-backend/actions/workflows/testing.yml/badge.svg)](https://github.com/robert-koch-institut/mex-backend/actions/workflows/testing.yml)
+[![cookiecutter](https://github.com/robert-koch-institut/mex-test/actions/workflows/cookiecutter.yml/badge.svg)](https://github.com/robert-koch-institut/mex-template)
+[![cve-scan](https://github.com/robert-koch-institut/mex-test/actions/workflows/cve-scan.yml/badge.svg)](https://github.com/robert-koch-institut/mex-test/actions/workflows/cve-scan.yml)
+[![documentation](https://github.com/robert-koch-institut/mex-test/actions/workflows/documentation.yml/badge.svg)](https://robert-koch-institut.github.io/mex-test)
+[![linting](https://github.com/robert-koch-institut/mex-test/actions/workflows/linting.yml/badge.svg)](https://github.com/robert-koch-institut/mex-test/actions/workflows/linting.yml)
+[![open-code](https://github.com/robert-koch-institut/mex-test/actions/workflows/open-code.yml/badge.svg)](https://gitlab.opencode.de/robert-koch-institut/mex/mex-test)
+[![testing](https://github.com/robert-koch-institut/mex-test/actions/workflows/testing.yml/badge.svg)](https://github.com/robert-koch-institut/mex-test/actions/workflows/testing.yml)
 
 ## Project
 
@@ -48,7 +48,7 @@ Germany
 
 ## Package
 
-The `mex-backend` package is a multi-purpose backend application with an HTTP-API. It
+The `mex-test` package is a multi-purpose test application with an HTTP-API. It
 provides endpoints to ingest data from ETL-pipelines, for a metadata editor application,
 and for publishing pipelines to extract standardized data for use in upstream frontend
 applications.
@@ -111,6 +111,6 @@ components of the MEx project are open-sourced under the same license as well.
 - run `pdm run {command} --help` to print instructions
 - run `pdm run {command} --debug` for interactive debugging
 
-### Backend
+### test
 
-- `backend` starts the backend service
+- `test` starts the test service

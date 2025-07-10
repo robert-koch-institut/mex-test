@@ -18,4 +18,4 @@ official neo4j docker image. So, to keep deployment simple, the use of APOC was 
 
 Contrary to the jinja default tags that are centered around curly braces, we use
 less/greater signs that do not collide with cypher syntax that often.
-See: `mex.backend.graph.query.QueryBuilder`
+See: `mex.test.graph.query.QueryBuilder`

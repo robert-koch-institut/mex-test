@@ -1,7 +1,7 @@
 Documentation
 =============
 
-Backend server for the RKI metadata exchange.
+test server for the RKI metadata exchange.
 
 .. toctree::
     :maxdepth: 2
