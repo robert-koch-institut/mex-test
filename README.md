@@ -1,6 +1,6 @@
 # MEx test
 
-Test project.
+Test project
 
 ## Project
 
